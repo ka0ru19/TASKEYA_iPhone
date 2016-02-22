@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		631D59C71C79BA2C00181E00 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D59C61C79BA2B00181E00 /* SecondViewController.swift */; };
+		631D5A071C7AE05900181E00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631D5A051C7AE05900181E00 /* Main.storyboard */; };
 		6379CC8F1C71BF6F0033C25B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6379CC8E1C71BF6F0033C25B /* AppDelegate.swift */; };
 		6379CC911C71BF6F0033C25B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6379CC901C71BF6F0033C25B /* ViewController.swift */; };
-		6379CC941C71BF6F0033C25B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6379CC921C71BF6F0033C25B /* Main.storyboard */; };
 		6379CC961C71BF6F0033C25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6379CC951C71BF6F0033C25B /* Assets.xcassets */; };
 		6379CC991C71BF6F0033C25B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6379CC971C71BF6F0033C25B /* LaunchScreen.storyboard */; };
 		6379CCA41C71BF6F0033C25B /* TASKEYA_test01Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6379CCA31C71BF6F0033C25B /* TASKEYA_test01Tests.swift */; };
@@ -34,10 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		631D59C61C79BA2B00181E00 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		631D5A061C7AE05900181E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6379CC8B1C71BF6F0033C25B /* TASKEYA_test01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TASKEYA_test01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6379CC8E1C71BF6F0033C25B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6379CC901C71BF6F0033C25B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6379CC931C71BF6F0033C25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6379CC951C71BF6F0033C25B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6379CC981C71BF6F0033C25B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6379CC9A1C71BF6F0033C25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,7 +101,8 @@
 			children = (
 				6379CC8E1C71BF6F0033C25B /* AppDelegate.swift */,
 				6379CC901C71BF6F0033C25B /* ViewController.swift */,
-				6379CC921C71BF6F0033C25B /* Main.storyboard */,
+				631D59C61C79BA2B00181E00 /* SecondViewController.swift */,
+				631D5A051C7AE05900181E00 /* Main.storyboard */,
 				6379CC951C71BF6F0033C25B /* Assets.xcassets */,
 				6379CC971C71BF6F0033C25B /* LaunchScreen.storyboard */,
 				6379CC9A1C71BF6F0033C25B /* Info.plist */,
@@ -232,9 +235,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631D5A071C7AE05900181E00 /* Main.storyboard in Resources */,
 				6379CC991C71BF6F0033C25B /* LaunchScreen.storyboard in Resources */,
 				6379CC961C71BF6F0033C25B /* Assets.xcassets in Resources */,
-				6379CC941C71BF6F0033C25B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631D59C71C79BA2C00181E00 /* SecondViewController.swift in Sources */,
 				6379CC911C71BF6F0033C25B /* ViewController.swift in Sources */,
 				6379CC8F1C71BF6F0033C25B /* AppDelegate.swift in Sources */,
 			);
@@ -296,10 +300,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6379CC921C71BF6F0033C25B /* Main.storyboard */ = {
+		631D5A051C7AE05900181E00 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6379CC931C71BF6F0033C25B /* Base */,
+				631D5A061C7AE05900181E00 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -401,6 +405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TASKEYA_test01/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litech.TASKEYA-test01";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -412,6 +417,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TASKEYA_test01/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.litech.TASKEYA-test01";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -485,6 +491,7 @@
 				6379CCB51C71BF6F0033C25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6379CCB61C71BF6F0033C25B /* Build configuration list for PBXNativeTarget "TASKEYA_test01Tests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +500,7 @@
 				6379CCB81C71BF6F0033C25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6379CCB91C71BF6F0033C25B /* Build configuration list for PBXNativeTarget "TASKEYA_test01UITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +509,7 @@
 				6379CCBB1C71BF6F0033C25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
