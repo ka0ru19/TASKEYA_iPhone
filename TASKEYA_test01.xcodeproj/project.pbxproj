@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		631D59C71C79BA2C00181E00 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631D59C61C79BA2B00181E00 /* SecondViewController.swift */; };
 		631D5A071C7AE05900181E00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631D5A051C7AE05900181E00 /* Main.storyboard */; };
+		631D5A911C7C7F0100181E00 /* taskeyalogo_1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 631D5A901C7C7F0100181E00 /* taskeyalogo_1024.png */; };
 		6379CC8F1C71BF6F0033C25B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6379CC8E1C71BF6F0033C25B /* AppDelegate.swift */; };
 		6379CC911C71BF6F0033C25B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6379CC901C71BF6F0033C25B /* ViewController.swift */; };
 		6379CC961C71BF6F0033C25B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6379CC951C71BF6F0033C25B /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		631D59C61C79BA2B00181E00 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		631D5A061C7AE05900181E00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		631D5A901C7C7F0100181E00 /* taskeyalogo_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taskeyalogo_1024.png; sourceTree = "<group>"; };
 		6379CC8B1C71BF6F0033C25B /* TASKEYA_test01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TASKEYA_test01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6379CC8E1C71BF6F0033C25B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6379CC901C71BF6F0033C25B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				6379CC8E1C71BF6F0033C25B /* AppDelegate.swift */,
+				631D5A901C7C7F0100181E00 /* taskeyalogo_1024.png */,
 				6379CC901C71BF6F0033C25B /* ViewController.swift */,
 				631D59C61C79BA2B00181E00 /* SecondViewController.swift */,
 				631D5A051C7AE05900181E00 /* Main.storyboard */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				631D5A911C7C7F0100181E00 /* taskeyalogo_1024.png in Resources */,
 				631D5A071C7AE05900181E00 /* Main.storyboard in Resources */,
 				6379CC991C71BF6F0033C25B /* LaunchScreen.storyboard in Resources */,
 				6379CC961C71BF6F0033C25B /* Assets.xcassets in Resources */,

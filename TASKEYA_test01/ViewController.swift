@@ -32,6 +32,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        /* Create an Image View to replace the Title View */
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        
+        imageView.contentMode = .ScaleAspectFit
+        imageView.image = UIImage(named:"taskeyalogo_1024.png")
+        
+        /* Set the Title View */
+        navigationItem.titleView = imageView
+        
+        
         // 各TextFieldの初期入力文字の設定
         titleTextField.placeholder = "依頼のタイトルを入力"
         supDecTextField.placeholder = dateToString(NSDate())
@@ -64,6 +74,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         //supDecToolBarを閉じるボタンを追加
         let supDectoolBarBtn      = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
         let supDecToolBarBtnToday = UIBarButtonItem(title: "今日", style: .Done, target: self, action: "tappedSupDecToolBarBtnToday:")
+        supDectoolBarBtn.tag = 2
         supDecToolBar.items = [supDectoolBarBtn, supDecToolBarBtnToday]
         
         // decDatePickerの設定
@@ -82,6 +93,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         //decToolBarを閉じるボタンを追加
         let decToolBarBtn      = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
         let decToolBarBtnToday = UIBarButtonItem(title: "今日", style: .Done, target: self, action: "tappedDecToolBarBtnToday:")
+        decToolBarBtn.tag = 3
         decToolBar.items = [decToolBarBtn, decToolBarBtnToday]
         
         // priceTextFiledの設定
@@ -94,9 +106,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         priceToolBar.barStyle = .BlackTranslucent
         priceToolBar.tintColor = UIColor.whiteColor()
         
-        //reqRangeToolBarを閉じるボタンを追加
+        // priceToolBarを閉じるボタンを追加
         let priceToolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
-        //        myToolBarButton.tag = 1
+        priceToolBarButton.tag = 4
         priceToolBar.items = [priceToolBarButton]
         
         
@@ -114,9 +126,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         reqRangeToolBar.tintColor = UIColor.whiteColor()
         
         //reqRangeToolBarを閉じるボタンを追加
-        let myToolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
-        //        myToolBarButton.tag = 1
-        reqRangeToolBar.items = [myToolBarButton]
+        let reqRangeToolBarButton = UIBarButtonItem(title: "完了", style: .Done, target: self, action: "tappedToolBarBtn:")
+        reqRangeToolBarButton.tag = 5
+        reqRangeToolBar.items = [reqRangeToolBarButton]
         
         
         //TextFieldをpickerViewとToolVerに関連づけ
@@ -128,20 +140,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
+        print("textFieldShouldReturn!!!!!!!!!!!!")
         
         // 今フォーカスが当たっているテキストボックスからフォーカスを外す
         textField.resignFirstResponder()
-        // 次のTag番号を持っているテキストボックスがあれば、フォーカスする
-        //        let nextTag = textField.tag + 1
-        //        if let nextTextField = self.view.viewWithTag(nextTag) {
-        //            nextTextField.becomeFirstResponder()
-        //        }
+        nextInput(textField.tag)
         return true
+        
+        
     }
     
-//    /*
-//    テキストが編集された際に呼ばれる.
-//    */
+    //    /*
+    //    テキストが編集された際に呼ばれる.
+    //    */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         // 変更後の内容を作成する
         var tmpStr = textField.text! as NSString
@@ -150,7 +161,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         if tmpStr.length > 20 {
             print("20字を超えました。")
             return false
-        }        
+        }
         //テキストフィールドを更新する
         return true
     }
@@ -158,7 +169,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     // 次の入力に移動するメソッド
     func nextInput(tagNum: Int){
         
-//        // 次のTag番号を持っているテキストボックスがあれば、フォーカスする
+        //        // 次のTag番号を持っているテキストボックスがあれば、フォーカスする
         let nextTag = tagNum + 1
         if let nextTextField = self.view.viewWithTag(nextTag) {
             nextTextField.becomeFirstResponder()
@@ -189,6 +200,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         decTextField.resignFirstResponder()
         priceTextField.resignFirstResponder()
         reqRangeTextField.resignFirstResponder()
+        
+        nextInput(sender.tag)
     }
     
     // 「今日」を押すと今日の日付をセットする
