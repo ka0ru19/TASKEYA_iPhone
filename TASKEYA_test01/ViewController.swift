@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIToolbarDelegate {
     @IBOutlet weak var titleTextField: UITextField! //タイトル
     @IBOutlet weak var supDecTextField: UITextField! //実行者決定期限
     @IBOutlet weak var decTextField: UITextField! // 実行期限
@@ -22,7 +22,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
     
     var supDecDatePicker: UIDatePicker! //実行者決定期限日時選択のPickerView
     var decDatePicker: UIDatePicker! //実行期限日時選択のPickerView
-    var myPickerView: UIPickerView!
+    var reqRangePickerView: UIPickerView!
     
     var supDecDate: NSDate!
     var decDate: NSDate!
@@ -39,10 +39,19 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
         priceTextField.placeholder = "金額を入力"
         reqRangeTextField.placeholder = "依頼範囲を選択"
         
+        titleTextField.tag = 1
+        supDecTextField.tag = 2
+        decTextField.tag = 3
+        priceTextField.tag = 4
+        reqRangeTextField.tag = 5
+        
+        titleTextField.delegate = self
+        titleTextField.returnKeyType = .Next
+        
         // supDecDatePickerの設定
         supDecDatePicker = UIDatePicker()
         supDecDatePicker.addTarget(self, action: "changedSupDecDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
-        supDecDatePicker.datePickerMode = UIDatePickerMode.Date
+        supDecDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
         supDecTextField.inputView = supDecDatePicker
         
         // supDecToolBar作成。ニョキ担当
@@ -60,7 +69,7 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
         // decDatePickerの設定
         decDatePicker = UIDatePicker()
         decDatePicker.addTarget(self, action: "changedDecDateEvent:", forControlEvents: UIControlEvents.ValueChanged)
-        decDatePicker.datePickerMode = UIDatePickerMode.Date
+        decDatePicker.datePickerMode = UIDatePickerMode.DateAndTime
         decTextField.inputView = decDatePicker
         
         // decToolBar作成。ニョキ担当
@@ -92,10 +101,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
         
         
         // reqRangePickerViewの設定
-        myPickerView = UIPickerView()
-        myPickerView.showsSelectionIndicator = true
-        myPickerView.delegate = self
-        reqRangeTextField.inputView = myPickerView
+        reqRangePickerView = UIPickerView()
+        reqRangePickerView.showsSelectionIndicator = true
+        reqRangePickerView.delegate = self
+        reqRangeTextField.inputView = reqRangePickerView
         
         // reqRangeToolBar作成。ニョキ担当
         reqRangeToolBar = UIToolbar(frame: CGRectMake(0, self.view.frame.size.height/6, self.view.frame.size.width, 40.0))
@@ -117,6 +126,46 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
         reqRangeTextField.inputAccessoryView = reqRangeToolBar
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        
+        // 今フォーカスが当たっているテキストボックスからフォーカスを外す
+        textField.resignFirstResponder()
+        // 次のTag番号を持っているテキストボックスがあれば、フォーカスする
+        //        let nextTag = textField.tag + 1
+        //        if let nextTextField = self.view.viewWithTag(nextTag) {
+        //            nextTextField.becomeFirstResponder()
+        //        }
+        return true
+    }
+    
+//    /*
+//    テキストが編集された際に呼ばれる.
+//    */
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        // 変更後の内容を作成する
+        var tmpStr = textField.text! as NSString
+        tmpStr = tmpStr.stringByReplacingCharactersInRange(range, withString: string)
+        
+        if tmpStr.length > 20 {
+            print("20字を超えました。")
+            return false
+        }        
+        //テキストフィールドを更新する
+        return true
+    }
+    
+    // 次の入力に移動するメソッド
+    func nextInput(tagNum: Int){
+        
+//        // 次のTag番号を持っているテキストボックスがあれば、フォーカスする
+        let nextTag = tagNum + 1
+        if let nextTextField = self.view.viewWithTag(nextTag) {
+            nextTextField.becomeFirstResponder()
+        }
+        
+    }
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int {
         return 1
     }
@@ -130,7 +179,6 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        //myTextField.text = salarymanArr[row] as? String
         reqRangeTextField.text = reqRangeArray[row] as? String
     }
     
@@ -159,12 +207,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
     
     //
     func changedSupDecDateEvent(sender:UIDatePicker){
-//        var dateSelecter: UIDatePicker = sender
+        //        var dateSelecter: UIDatePicker = sender
         self.changeSupDecLabelDate(supDecDatePicker.date)
     }
     
     func changedDecDateEvent(sender:UIDatePicker){
-//        var dateSelecter: UIDatePicker = sender
+        //        var dateSelecter: UIDatePicker = sender
         self.changeDecLabelDate(decDatePicker.date)
     }
     
@@ -179,22 +227,29 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIToolbarDelegate 
     }
     
     func dateToString(date:NSDate) ->String {
-        let calender: NSCalendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)!
+        let calender: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let comps: NSDateComponents = calender.components([.Year, .Month, .Day, .Hour, .Minute, .Second, .Weekday] , fromDate: date)
         
         let date_formatter: NSDateFormatter = NSDateFormatter()
         var weekdays: [String?] = [nil, "日", "月", "火", "水", "木", "金", "土"]
-        date_formatter.locale     = NSLocale(localeIdentifier: "ja")
-        date_formatter.dateFormat = "yyyy年MM月dd日（\(weekdays[comps.weekday])） "
+        date_formatter.locale     = NSLocale(localeIdentifier: "ja_JP")
+        date_formatter.dateStyle = .FullStyle
+        print(String(comps.weekday))
+        date_formatter.dateFormat = "yyyy年MM月dd日(\(weekdays[comps.weekday]!)) hh時mm分"
         
         return date_formatter.stringFromDate(date)
     }
     
+    // 依頼ボタン
     @IBAction func onTappedNextButton(sender: UIButton) {
         self.performSegueWithIdentifier("toSecondVC", sender: nil)
     }
     
+    
+    
+    // 画面遷移の準備
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if (segue.identifier == "toSecondVC") {
             
             let SecondVC = segue.destinationViewController as! SecondViewController
